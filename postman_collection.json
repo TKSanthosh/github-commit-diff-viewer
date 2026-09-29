@@ -1,0 +1,121 @@
+{
+  "info": {
+    "name": "Fleet Studio Git Diff API",
+    "description": "Postman collection for testing the Fleet Studio Git Commit & Diff Backend API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "owner",
+      "value": "golemfactory",
+      "type": "string"
+    },
+    {
+      "key": "repository",
+      "value": "clay",
+      "type": "string"
+    },
+    {
+      "key": "commitSHA",
+      "value": "a1bf367b3af680b1182cc52bb77ba095764a11f9",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        },
+        "description": "Checks server status."
+      }
+    },
+    {
+      "name": "2. Get Commit Metadata",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/repositories/{{owner}}/{{repository}}/commits/{{commitSHA}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["repositories", "{{owner}}", "{{repository}}", "commits", "{{commitSHA}}"]
+        },
+        "description": "Fetches commit metadata (subject, body, author, committer, parents) conforming to Fleet Studio OpenAPI schema."
+      }
+    },
+    {
+      "name": "3. Get Commit Diff",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/repositories/{{owner}}/{{repository}}/commits/{{commitSHA}}/diff",
+          "host": ["{{baseUrl}}"],
+          "path": ["repositories", "{{owner}}", "{{repository}}", "commits", "{{commitSHA}}", "diff"]
+        },
+        "description": "Fetches file-level diff hunks and line numbers conforming to CombinedFileDifference schema."
+      }
+    },
+    {
+      "name": "4. Validation Test - Invalid SHA (Expect 400)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/repositories/{{owner}}/{{repository}}/commits/invalid-sha-123",
+          "host": ["{{baseUrl}}"],
+          "path": ["repositories", "{{owner}}", "{{repository}}", "commits", "invalid-sha-123"]
+        },
+        "description": "Tests validation error for non-40-character hexadecimal SHA."
+      }
+    },
+    {
+      "name": "5. Not Found Test - Nonexistent Repo (Expect 404)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/repositories/fake-owner-9999/fake-repo-9999/commits/{{commitSHA}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["repositories", "fake-owner-9999", "fake-repo-9999", "commits", "{{commitSHA}}"]
+        },
+        "description": "Tests 404 handling when repository does not exist on GitHub."
+      }
+    }
+  ]
+}

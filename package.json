@@ -1,0 +1,22 @@
+{
+  "name": "fleet-studio-git-diff-viewer",
+  "version": "1.0.0",
+  "description": "Full-stack Git Commit and Diff Viewer for Fleet Studio Technologies assessment",
+  "main": "server/src/server.js",
+  "scripts": {
+    "setup": "npm --prefix server install && npm --prefix client install",
+    "dev": "concurrently -n \"server,client\" -c \"blue,magenta\" \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "start": "npm --prefix server start",
+    "build": "npm --prefix client run build",
+    "test": "npm --prefix server test && npm --prefix client test",
+    "test:server": "npm --prefix server test",
+    "test:client": "npm --prefix client test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "author": "Fleet Studio Candidate",
+  "license": "ISC"
+}

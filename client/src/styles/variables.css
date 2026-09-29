@@ -1,0 +1,53 @@
+:root {
+  /* Page & surface colors */
+  --color-page-bg: #F8FDFF;
+  --color-card-bg: #FFFFFF;
+  --color-card-border: #E7EBF1;
+  --color-hunk-bg: #F8FBFF;
+  --color-hunk-border: #E7EBF1;
+
+  /* Diff highlight colors */
+  --color-diff-add-bg: #D8FFCB;
+  --color-diff-del-bg: #FFE4E9;
+  --color-diff-context-bg: #FFFFFF;
+
+  /* Text colors */
+  --color-text-body: #39496A;
+  --color-text-header: #39496A;
+  --color-text-muted: #6D727C;
+  --color-text-link: #1C7CD6;
+  --color-text-code-primary: #657082;
+  --color-text-code-secondary: #B07BA9;
+
+  /* Typography */
+  --font-family-body: Arial, Helvetica, sans-serif;
+  --font-family-mono: "Courier New", Courier, monospace;
+  
+  --font-size-body: 14px;
+  --font-size-header: 16px;
+  --font-size-mono: 12px;
+  --font-size-link-mono: 13px;
+
+  --line-height-body: 20px;
+  --line-height-header: 24px;
+  --line-height-code: 19px;
+
+  /* Spacing */
+  --spacing-rem-035: 0.35rem;
+  --spacing-rem-05: 0.5rem;
+  --spacing-rem-15: 1.5rem;
+  --spacing-rem-2: 2rem;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-full: 9999px;
+
+  /* Max width */
+  --max-content-width: 1040px;
+}
